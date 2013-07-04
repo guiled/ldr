@@ -1,0 +1,6 @@
+{
+    "require": {
+        "hoa/compiler": "dev-master"
+    },
+    "minimum-stability": "dev"
+}
