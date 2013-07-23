@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+SRC_DIR="`pwd`"
+cd "`dirname "$0"`"
+cd "../hoa/core/Bin"
+BIN_TARGET="`pwd`/hoa"
+cd "$SRC_DIR"
+"$BIN_TARGET" "$@"
