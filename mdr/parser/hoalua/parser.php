@@ -54,23 +54,21 @@ class parser
 	 * @param	\Hoa\Compiler\Llk\TreeNode $ast	The result of a \Lua\Parser::parse()
 	 * @param	array	$dictionnary
 	 */
-	public function execute($ast, $dictionnary = array())
+	public function execute($ast, &$dictionnary = array())
 	{
-		if (false === isset($this->visitor)) {
-			$this->visitor = new \Hoathis\Lua\Visitor\Interpreter();
-			$environment = $this->visitor->getRoot();
-			$environment['print'] = new \Hoathis\Lua\Model\Closure('print', $environment, array('text'), function () {
-					$args = func_get_args();
-					foreach ($args as $arg) {
-						echo $arg;
-					}
-				});
+		$this->visitor = new \Hoathis\Lua\Visitor\Interpreter();
+		$environment = $this->visitor->getRoot();
+		$environment['print'] = new \Hoathis\Lua\Model\Closure('print', $environment, array('text'), function () {
+				$args = func_get_args();
+				foreach ($args as $arg) {
+					echo $arg;
+				}
+			});
 
-			// Assigning values from dictionnary to Lua context
-			foreach ($dictionnary as $var_name => $var_value) {
-				$environment[$var_name] = new \Hoathis\Lua\Model\Variable($var_name, $environment);
-				$environment[$var_name]->setValue($var_value);
-			}
+		// Assigning values from dictionnary to Lua context
+		foreach ($dictionnary as $var_name => $var_value) {
+			$environment[$var_name] = new \Hoathis\Lua\Model\Variable($var_name, $environment);
+			$environment[$var_name]->setValue($var_value);
 		}
 
 		return $this->visitor->visit($ast);

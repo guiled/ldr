@@ -1,6 +1,22 @@
 {
-    "require": {
-        "hoa/compiler": "dev-master"
-    },
-    "minimum-stability": "dev"
+	"require": {
+		"hoa/compiler": "dev-master",
+		"atoum/atoum": "dev-master",
+		"hoathis/lua": "dev-master"
+	},
+	"minimum-stability": "dev",
+	"repositories": [
+		{
+			"type": "package",
+			"package": {
+				"name": "hoathis/lua",
+				"version": "dev-master",
+				"source": {
+					"url": "https://github.com/guiled/Hoathis-Lua",
+					"type": "git",
+					"reference": "b03afc7c6e000d7d98a2495089c9ae603dc17132"
+				}
+			}
+		}
+	]
 }
